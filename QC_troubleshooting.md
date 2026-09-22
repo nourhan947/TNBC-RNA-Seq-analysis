@@ -122,14 +122,12 @@ almost no effect despite the correct underlying mechanism.
 Fastp reports for all samples confirmed correct detection and trimming of standard Illumina TrueSeq adapters
 with negligible adapter dimer rates. GC content increased after trimming in the tumor samples. Evidence against adapters as the source of their elevated GC content, since removing adapter-contaminated tails only concentrated the underlying contaminant further.
 
-| Sample Name | % Duplication | Reads After Filtering | GC Content | % PF (Reads) | % Adapter |
+| Sample | Detected Adapter | Insert Size Peak | Duplication Rate | GC Before | GC After |
 |---|---|---|---|---|---|
-| SRR15852393 | 24.1% | 59.1M | 67.7% | 93.9% | 86.9% |
-| SRR15852394 | 20.0% | 41.3M | 62.0% | 96.2% | 82.6% |
-| SRR15852395 | 43.5% | 40.8M | 78.7% | 91.6% | 84.1% |
-| SRR15852423 | 37.1% | 69.9M | 43.8% | 98.2% | 42.0% |
-| SRR15852424 | 44.8% | 64.1M | 50.1% | 98.1% | 69.9% |
-| SRR15852425 | 12.9% | 55.4M | 49.7% | 99.4% | 67.3% |
+| SRR15852393 | TruSeq (correct) | 104bp | 24.08% | 64.2% | 67.7% |
+| SRR15852394 | TruSeq (correct) | 105bp | 19.99% | 60.3% | 62.0% |
+| SRR15852395 | TruSeq (correct) | 119bp | 43.53% | 72.2% | 78.7% |
+
 
 ### observations:
 GC content after filtering confirms the raw FastQC finding across all six samples; tumor samples sit at 62:79% (elevated/abnormal), 
@@ -150,6 +148,7 @@ consisted of abnormally duplicated 50bp sequences, and to establish which sample
 | SRR15852393 | 19 | 2.75% |
 | SRR15852394 | 16 | 3.13% |
 | SRR15852395 | 119 | **27.6%** |
+
 Sample SRR15852395 stood out sharply — over a quarter of its entire library consisted of overrepresented sequences,
 an order of magnitude higher than the other two affected samples. This directly matched its alignment statistics
 (Section 1.2): the sample with by far the highest overrepresented-sequence burden also had by far the worst unique
