@@ -1,0 +1,27 @@
+#!/bin/bash
+#Step 4 Alignment
+#Directories
+TRIMMED_DIR="/media/sf_course_data/Trimming_output"
+REFRENCE_DIR="/media/sf_course_data/RAdataset"
+ALIGNMENT_DIR="/media/sf_course_data/alignments"
+STAR_INDEX_DIR="/media/sf_course_data/star_index"
+
+mkdir -p $STAR_INDEX_DIR
+mkdir -p $ALIGNMENT_DIR
+#Generate STAR index for the refrence genome 
+STAR --runThreadN 8 --runMode genomeGenerate \
+ --genomeDir $STAR_INDEX_DIR \
+ --genomeFastaFiles $REFRENCE_DIR/Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa \
+ --sjdbGTFfile $REFRENCE_DIR/Homo_sapiens.GRCh38.116.gtf \
+ --sjdbOverhang 149 \
+ --genomeSAsparseD 3 \
+ --genomeSAindexNbases 14 \
+ --limitGenomeGenerateRAM 18000000000
+#Align Paried end reads to refrence genome
+for sample in $(ls $TRIMMED_DIR/*_1.paired.fastq | sed 's/_1.paired.fastq//' | xargs -n 1 basename); do
+    STAR --runThreadN 8 \
+ --genomeDir $STAR_INDEX_DIR \
+ --readFilesIn $TRIMMED_DIR/${sample}_1.paired.fastq $TRIMMED_DIR/${sample}_2.paired.fastq \
+ --outFileNamePrefix $ALIGNMENT_DIR/${sample}_ \
+ --outSAMtype BAM SortedByCoordinate
+Done
