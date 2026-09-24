@@ -99,13 +99,83 @@ overrepresented sequences in the tumor samples — see
 bash scripts/02_trimming.sh
 ```
 fastp (Q20, min length 36). See 
-[QC troubleshooting §2.3](docs/QC_troubleshooting.md#23-adapter-contamination-check-fastp).
+[QC troubleshooting §2.3](QC_troubleshooting.md#23-adapter-contamination-check-fastp).
 
 ### 4. STAR Genome Index & Initial Alignment
 ```bash
 bash scripts/03_star_index_alignment.sh
 ```
+```
+**Result:** Tumor samples showed unique mapping as low as 5.77–59.22% vs. 
+80–90% in normal samples — see 
+[QC troubleshooting §1.2](QC_troubleshooting.md#12-initial-star-alignment-results).
 
+### 5–6. rRNA Contamination: Detection
+```bash
+python scripts/04_extract_overrep_seqs.py
+bash scripts/05_download_rRNA_ref.sh
+```
+Identified two rRNA populations (mature 28S; 45S precursor/spacer 
+regions) via FastQC overrepresented-sequence analysis, k-mer comparison, 
+and BLAST — see 
+[QC troubleshooting §2.4–2.7](QC_troubleshooting.md#24-overrepresented-sequence-analysis).
+
+### 7. rRNA Filtering & Re-alignment
+```bash
+bash scripts/06_rRNA_filtering.sh
+bash scripts/07_star_realignment.sh
+```
+**Result:** Unique mapping improved to 75.85% (SRR15852393) and 75.92% 
+(SRR15852394). SRR15852395 improved only to 25.75% — excluded. See 
+[QC troubleshooting §3](QC_troubleshooting.md#3-rrna-remediation).
+
+### 8. BAM Indexing
+```bash
+bash scripts/08_bam_indexing.sh
+```
+
+### 9. Strandedness Check
+```bash
+bash scripts/09_strandedness_check.sh
+```
+**Result:** Library confirmed unstranded (~43%/43% split) → `-s 0` used 
+in featureCounts.
+
+### 10. Gene-Level Counting
+```bash
+bash scripts/10_featurecounts.sh
+```
+**Result:** SRR15852423 showed only 9.7% feature-assignment — prompted 
+further investigation.
+
+### 11. Genomic DNA Contamination Check
+```bash
+bash scripts/11_read_distribution.sh
+```
+**Result:** SRR15852423 showed 78.8% intronic reads vs. 49.6% in matched 
+sample SRR15852424 — confirmed genomic DNA contamination,  — excluded. See 
+[QC troubleshooting §4](QC_troubleshooting.md#4-genomic-dna-contamination-srr15852423).
+
+---
+
+## Results Summary
+
+| Sample | Group | Initial Unique Mapping | Final Unique Mapping | Outcome |
+|---|---|---|---|---|
+| SRR15852393 | Tumor | 42.68% | 75.85% |  Included |
+| SRR15852394 | Tumor | 59.22% | 75.92% |  Included |
+| SRR15852395 | Tumor | 5.77% | 25.75% |  Excluded |
+| SRR15852423 | Normal | 90.38% | — |  Excluded  |
+| SRR15852424 | Normal | 80.70% | — |  Included |
+| SRR15852425 | Normal | 85.93% | — |  Included |
+
+```
+## References
+
+- Dataset: [GSE183947](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE183947)
+- Original paper: Identification of Five Cytotoxicity-Related Genes 
+  Involved in the Progression of Triple-Negative Breast Cancer
+- SortMeRNA: https://github.com/sortmerna/sortmerna
 
 
 
