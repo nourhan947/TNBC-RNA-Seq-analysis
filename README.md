@@ -12,7 +12,7 @@ This project analyzes RNA-Seq data from six samples (Tumor sample and three norm
 2 tumor vs 2 normal see   QC_troubleeshoting.md for full investigation 
 
 ## Respiratory Structure
-
+'''
 ├── scripts/
 │   ├── 00_download_extract.sh
 │   ├── 01_qc_raw.sh
@@ -38,7 +38,8 @@ This project analyzes RNA-Seq data from six samples (Tumor sample and three norm
 ├── docs/
 │   └── QC_troubleshooting.md
 └── README.md
-
+'''
+##
 
 
 
