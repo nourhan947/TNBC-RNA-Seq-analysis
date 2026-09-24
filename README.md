@@ -11,7 +11,7 @@ This project analyzes RNA-Seq data from six samples (Tumor sample and three norm
  During initial QC, four samples showed evidence of contamination: three tumor samples showed unique mapping rates as low as 5.77–59.22% (vs. 80–90% in unaffected samples) later identified via FASTQ, BLAST and cross-refering the original study's method as ribosomal RNA contamination. A separate normal sample showed abnormally low gene-level read assignment, identified via RSEQC as genomic DNA contamination. rRNA filtering successfully recovered two of the three affected tumor samples to normal mapping rates; the third only showed partial recovery, indicating an additional, unresolved RNA quality issue. Genomic DNA contamination had no viable computational fix Tow samples were excluded from downstream analysis as a result Differential expression analysis was performed on the remaining 
 2 tumor vs 2 normal 
 see   QC_troubleeshoting.md for full investigation Full diagnostic detail is documented in 
-[`docs/QC_troubleshooting.md`](docs/QC_troubleshooting.md).
+[`QC_troubleshooting.md`](QC_troubleshooting.md).
 
 ## Respiratory Structure
 
