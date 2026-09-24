@@ -67,13 +67,13 @@ see   QC_troubleeshoting.md for full investigation Full diagnostic detail is doc
 
 ## Sample Summary
 |------|------|
-|Sample           condition    statues |
-|SRR15852423  |   Normal       excluded|
-|SRR15852424  |   Normal        used|
-|SRR15852425  |   Normal        used|
-|SRR15852393  |   Tumor         used|
-|SRR15852394  |   Tumor         used|
-|SRR15852395  |   Tumor          excluded|
+|Sample       |   condition  |  statues |
+|SRR15852423  |   Normal     |  excluded|
+|SRR15852424  |   Normal     |  used|
+|SRR15852425  |   Normal     |  used|
+|SRR15852393  |   Tumor      |  used|
+|SRR15852394  |   Tumor      |  used|
+|SRR15852395  |   Tumor      |   excluded|
 
 
 
