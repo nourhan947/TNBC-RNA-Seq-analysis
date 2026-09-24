@@ -118,7 +118,7 @@ bash scripts/05_download_rRNA_ref.sh
 Identified two rRNA populations (mature 28S; 45S precursor/spacer 
 regions) via FastQC overrepresented-sequence analysis, k-mer comparison, 
 and BLAST — see 
-[QC troubleshooting §2.4–2.7](docs/QC_troubleshooting.md#24-overrepresented-sequence-analysis).
+[QC troubleshooting §2.4–2.7](QC_troubleshooting.md#24-overrepresented-sequence-analysis).
 
 ### 7. rRNA Filtering & Re-alignment
 ```bash
