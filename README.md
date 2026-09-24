@@ -12,7 +12,16 @@ This project analyzes RNA-Seq data from six samples (Tumor sample and three norm
 2 tumor vs 2 normal 
 see   QC_troubleeshoting.md for full investigation Full diagnostic detail is documented in 
 [`QC_troubleshooting.md`](QC_troubleshooting.md).
+## Dataset
 
+- **Source:** [GSE183947](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE183947)
+- **Paper:** Identification of Five Cytotoxicity-Related Genes Involved 
+  in the Progression of Triple-Negative Breast Cancer
+- **Samples:** 6 paired tumor/normal fresh surgical tissue specimens
+- **Library prep:** Illumina Stranded Total RNA Prep with Ribo-Zero Plus 
+  (rRNA + globin depletion)
+- **Reference:** GRCh38, Ensembl annotation v116
+  
 ## Respiratory Structure
 
 ```
@@ -43,8 +52,28 @@ see   QC_troubleeshoting.md for full investigation Full diagnostic detail is doc
 └── README.md
 ```
 
+## Requirements
 
+- SRA Toolkit (prefetch, fasterq-dump)
+- fastp v1.3.6
+- FastQC / MultiQC 0.12.1
+- STAR (2.7.11b)
+- samtools
+- SortMeRNA (v4.3.4)
+- Bowtie2
+- RSeQC
+- subread (featureCounts)
+- R (DESeq2, apeglm)
 
+## Sample Summary
+|------|------|
+|Sample           condition    statues |
+|SRR15852423  |   Normal       excluded|
+|SRR15852424  |   Normal        used|
+|SRR15852425  |   Normal        used|
+|SRR15852393  |   Tumor         used|
+|SRR15852394  |   Tumor         used|
+|SRR15852395  |   Tumor          excluded|
 
 
 
