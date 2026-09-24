@@ -13,3 +13,35 @@ This project analyzes RNA-Seq data from six samples (Tumor sample and three norm
 
 ## Respiratory Structure
 
+├── scripts/
+│   ├── 00_download_extract.sh      # SRA download (prefetch) + fasterq-dump extraction
+│   ├── 01_qc_raw.sh                # FastQC + MultiQC on raw reads
+│   ├── 02_trimming.sh              # fastp adapter/quality trimming
+│   ├── 03_star_index_alignment.sh  # STAR genome index build &Initial alignment, all 6 samples
+│   ├── 04_extract_overrep_seqs.py  # Pull + compare FastQC overrepresented seqs
+│   ├── 05_download_rRNA_ref.sh     # Fetch rRNA reference sequences (NCBI)
+│   ├── 06_rRNA_filtering.sh        # Bowtie2 rRNA removal
+│   ├── 07_star_realignment.sh      # Re-align rRNA-filtered samples
+│   ├── 08_bam_indexing.sh          # samtools index
+│   ├── 09_strandedness_check.sh    # RSeQC infer_experiment.py
+│   ├── 10_featurecounts.sh         # Gene-level read counting
+│   ├── 11_read_distribution.sh     # RSeQC gDNA contamination check
+│   └── 13_deseq2_analysis.R        # Differential expression analysis
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
