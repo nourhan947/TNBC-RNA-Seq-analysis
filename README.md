@@ -66,7 +66,7 @@ see   QC_troubleeshoting.md for full investigation Full diagnostic detail is doc
 - R (DESeq2, apeglm)
 
 ## Sample Summary
-|---|---|
+|---|---|---|
 |Sample       |   condition  |  statues |
 |SRR15852423  |   Normal     |  excluded|
 |SRR15852424  |   Normal     |  used|
