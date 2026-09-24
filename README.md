@@ -14,12 +14,12 @@ This project analyzes RNA-Seq data from six samples (Tumor sample and three norm
 ## Respiratory Structure
 
 ├── scripts/
-|
-│   ├── 00_download_extract.sh      
+│  
+|   ├── 00_download_extract.sh      
 │   ├── 01_qc_raw.sh               
 │   ├── 02_trimming.sh              
 │   ├── 03_star_index_alignment.sh 
-│   ├── 04_extract_overrep_seqs.py  
+|   ├── 04_extract_overrep_seqs.py  
 │   ├── 05_download_rRNA_ref.sh    
 │   ├── 06_rRNA_filtering.sh        
 │   ├── 07_star_realignment.sh      
