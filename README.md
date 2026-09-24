@@ -13,7 +13,31 @@ This project analyzes RNA-Seq data from six samples (Tumor sample and three norm
 
 ## Respiratory Structure
 
-
+├── scripts/
+│ ├── 00_download_extract.sh
+│ ├── 01_qc_raw.sh
+│ ├── 02_trimming.sh
+│ ├── 03_star_index_alignment.sh
+│ ├── 04_extract_overrep_seqs.py
+│ ├── 05_download_rRNA_ref.sh
+│ ├── 06_rRNA_filtering.sh
+│ ├── 07_star_realignment.sh
+│ ├── 08_bam_indexing.sh
+│ ├── 09_strandedness_check.sh
+│ ├── 10_featurecounts.sh
+│ ├── 11_read_distribution.sh
+│ └── 12_deseq2_analysis.R
+├── results/
+│ ├── multiqc_report_raw.html
+│ ├── multiqc_report_fastp.html
+│ ├── mapping_stats_initial.csv
+│ ├── mapping_stats_rRNA_filtered.csv
+│ ├── featurecounts_summary.txt
+│ ├── read_distribution_423_vs_424.csv
+│ └── DESeq2_Tumor_vs_Normal.csv
+├── docs/
+│ └── QC_troubleshooting.md
+└── README.md
 
 
 
