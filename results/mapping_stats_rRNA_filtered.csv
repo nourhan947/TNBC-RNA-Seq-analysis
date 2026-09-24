@@ -1,0 +1,4 @@
+Sample,Group,Unique_Mapping_Before,Unique_Mapping_After,Multi_Mapping_Before,Multi_Mapping_After
+SRR15852393,Tumor,42.68,75.85,51.89,14.95
+SRR15852394,Tumor,59.22,75.92,33.36,14.82
+SRR15852395,Tumor,5.77,25.75,90.00,28.08
