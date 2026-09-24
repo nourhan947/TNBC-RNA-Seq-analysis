@@ -64,17 +64,47 @@ see   QC_troubleeshoting.md for full investigation Full diagnostic detail is doc
 - RSeQC
 - subread (featureCounts)
 - R (DESeq2, apeglm)
-
+```
 ## Sample Summary
+| Sample | Group | Status |
 |---|---|---|
-|Sample       |   condition  |  statues |
-|SRR15852423  |   Normal     |  excluded|
-|SRR15852424  |   Normal     |  used|
-|SRR15852425  |   Normal     |  used|
-|SRR15852393  |   Tumor      |  used|
-|SRR15852394  |   Tumor      |  used|
-|SRR15852395  |   Tumor      |   excluded|
+| SRR15852393 | Tumor |  Included  |
+| SRR15852394 | Tumor |  Included  |
+| SRR15852395 | Tumor |  Excluded  |
+| SRR15852423 | Normal |  Excluded |
+| SRR15852424 | Normal |  Included |
+| SRR15852425 | Normal |  Included |
 
+**Final analysis set:** 2 tumor vs. 2 normal.
+```
+## Pipeline
+
+### 1. Data Download & Extraction
+```bash
+bash scripts/00_download_extract.sh
+```
+Downloaded raw SRA files using `prefetch`, extracted to paired-end FASTQ 
+with `fasterq-dump`.
+
+### 2. Quality Control (Raw Reads)
+```bash
+bash scripts/01_qc_raw.sh
+```
+FastQC + MultiQC on raw reads. Revealed abnormal GC content and 
+overrepresented sequences in the tumor samples — see 
+[QC troubleshooting §1.1](QC_troubleshooting.md#11-fastqc-summary-raw-reads-pre-trimming).
+
+### 3. Adapter & Quality Trimming
+```bash
+bash scripts/02_trimming.sh
+```
+fastp (Q20, min length 36). See 
+[QC troubleshooting §2.3](docs/QC_troubleshooting.md#23-adapter-contamination-check-fastp).
+
+### 4. STAR Genome Index & Initial Alignment
+```bash
+bash scripts/03_star_index_alignment.sh
+```
 
 
 
