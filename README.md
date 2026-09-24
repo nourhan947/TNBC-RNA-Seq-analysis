@@ -14,6 +14,7 @@ This project analyzes RNA-Seq data from six samples (Tumor sample and three norm
 ## Respiratory Structure
 
 ├── scripts/
+|
 │   ├── 00_download_extract.sh      
 │   ├── 01_qc_raw.sh               
 │   ├── 02_trimming.sh              
