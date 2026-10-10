@@ -1,0 +1,53 @@
+
+import re
+
+def extract_overrepresented(html_path):
+    with open(html_path, encoding='utf-8', errors='ignore') as fh:
+        html = fh.read()
+    start = html.find('Overrepresented sequences</h2>')
+    end = html.find('</table>', start)          # stop at the end of THIS table
+    chunk = html[start:end]
+    rows = re.findall(r'<td>([^<]*)</td>', chunk)
+    seqs = []
+    for i in range(0, len(rows) - 3, 4):        # 4 cells per row
+        seq, count, pct, source = rows[i:i+4]
+        seqs.append((seq, float(pct)))
+    return seqs
+
+def kmers(seq_list, k=20):
+    kmer_set = set()
+    for seq, pct in seq_list:
+        for i in range(len(seq) - k + 1):
+            kmer_set.add(seq[i:i+k])
+    return kmer_set
+
+samples = ['SRR15852393_1', 'SRR15852394_1', 'SRR15852395_1']
+data = {}
+for f in samples:
+    data[f] = extract_overrepresented(f + '_fastqc.html')
+    total_pct = round(sum(p for _, p in data[f]), 2)
+    print(f, 'n_overrepresented =', len(data[f]), ' total % =', total_pct)
+
+# Exact-string overlap
+s93, s94, s95 = (set(seq for seq, _ in data[f]) for f in samples)
+print('\nExact matches')
+print('93 & 94:', len(s93 & s94))
+print('93 & 95:', len(s93 & s95))
+print('94 & 95:', len(s94 & s95))
+
+# 20-mer overlap
+k93, k94, k95 = (kmers(data[f]) for f in samples)
+print('\nShared 20-mers')
+print('93 & 94:', len(k93 & k94), ' (Population A)')
+print('93 & 95:', len(k93 & k95), ' (Population B)')
+print('94 & 95:', len(k94 & k95))
+
+# Tag each of sample 93's sequences
+print('\nSample 93 sequences by population')
+for seq, pct in data['SRR15852393_1']:
+    tag = []
+    if seq in s94: tag.append('94')
+    if seq in s95: tag.append('95')
+    print(f"{'+'.join(tag) if tag else '93-only':10s} {seq}")
+
+
