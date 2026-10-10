@@ -147,7 +147,7 @@ consisted of abnormally duplicated 50bp sequences, and to establish which sample
 |---|---|---|
 | SRR15852393 | 19 | 2.75% |
 | SRR15852394 | 16 | 3.13% |
-| SRR15852395 | 119 | **27.6%** |
+| SRR15852395 | 127 | **28.41%** |
 
 Sample SRR15852395 stood out sharply — over a quarter of its entire library consisted of overrepresented sequences,
 an order of magnitude higher than the other two affected samples. This directly matched its alignment statistics
